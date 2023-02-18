@@ -10,13 +10,16 @@ const cartsRouteBd = require('./routes/carts.router.bd')
 const viewRoute = require('./routes/views.route')
 const chatsRouter = require('./routes/chats.router')
 const server = express();
+const cookieParser = require ("cookie-parser");
+const FileStore = require ("session-file-store");
+const MongoStore = require ("connect-mongo");
 const mongoose = require('mongoose');
 const productModel = require('./dao/models/products.model');
 
 mongoose.set('strictQuery', false)
 
 
-
+const FileStorage = FileStore(session);
 const httpServer = server.listen(8080, ()=> {
     console.log('Servidor Listo en puerto 8080')
     
@@ -26,6 +29,11 @@ const httpServer = server.listen(8080, ()=> {
 server.engine('handlebars', handlebars.engine());
 server.set('views', __dirname + '/views');
 server.set('view engine', 'handlebars');
+
+//cokiers
+server.use(cookieParser());
+
+
 //express
 server.use(express.static(__dirname+'/public'));
 server.use(express.json())
@@ -48,6 +56,23 @@ const test = async ()=>{
  console.log("Su conexion a la base fue exitosa")
 
 }
+
+
+server.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl:
+        "mongodb+srv://Ignacio:jY6DHRTn6F9uCAmF@admin.mtszt8r.mongodb.net/?retryWrites=true&w=majority",
+      mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
+      ttl: 60 * 60,
+    }),
+    secret: "secretCode",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
 test();
 connectionSocket (httpServer);
 
