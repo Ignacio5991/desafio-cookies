@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const usersCollection = "users";
+const userCollection = ('users')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -22,5 +22,5 @@ const userSchema = new mongoose.Schema({
     },
   });
   
-  const userModel = mongoose.model(usersCollection, userSchema);
-  export default userModel;
+  const userModel = mongoose.model(userCollection, userSchema);
+  module.exports = userModel;

@@ -2,6 +2,7 @@ const ProductManager = require('../dao/mongoManager/BdProductManager');
 const BdCartManager = require ('../dao/mongoManager/BdCartManager');
 
 
+
 const views = async (req, res) => {
   const page = req.query.page
   const products = await ProductManager.getProduct(page);
@@ -19,7 +20,10 @@ const viewCart = async (req,res) => {
  })
 }
 
+
+
+
 module.exports = {
   views,
-  viewCart
+  viewCart,
 };

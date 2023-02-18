@@ -8,18 +8,21 @@ const cardsRoute = require ('./routes/carts.routes')
 const productsRouteBd = require('./routes/products.router.bd')
 const cartsRouteBd = require('./routes/carts.router.bd')
 const viewRoute = require('./routes/views.route')
+const routerSession = require ('./routes/session.router')
 const chatsRouter = require('./routes/chats.router')
 const server = express();
+const session = require('express-session');
 const cookieParser = require ("cookie-parser");
-const FileStore = require ("session-file-store");
-const MongoStore = require ("connect-mongo");
+// const FileStore = require ("session-file-store");
+const mongoconnect = require ("connect-mongo");
 const mongoose = require('mongoose');
 const productModel = require('./dao/models/products.model');
+
 
 mongoose.set('strictQuery', false)
 
 
-const FileStorage = FileStore(session);
+// const FileStorage = FileStore(session);
 const httpServer = server.listen(8080, ()=> {
     console.log('Servidor Listo en puerto 8080')
     
@@ -43,6 +46,7 @@ server.use(express.urlencoded({extended:true}))
 server.use("/api/products/", productsRoute);
 server.use("/api/carts/", cardsRoute);
 server.use("/", viewRoute);
+server.use('/api/session', routerSession);
 server.use("/api/productsBd/", productsRouteBd );
 server.use("/api/cartsBd/", cartsRouteBd );
 server.use("/api/chats/", chatsRouter );
@@ -60,15 +64,15 @@ const test = async ()=>{
 
 server.use(
   session({
-    store: MongoStore.create({
+    store: mongoconnect.create({
       mongoUrl:
         "mongodb+srv://Ignacio:jY6DHRTn6F9uCAmF@admin.mtszt8r.mongodb.net/?retryWrites=true&w=majority",
       mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
       ttl: 60 * 60,
     }),
     secret: "secretCode",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
   })
 );
 
