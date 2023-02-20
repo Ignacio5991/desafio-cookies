@@ -26,13 +26,22 @@ const register = async (req,res)=>{
 
 const login = async (req,res)=>{
   res.render("login")
-
 }
 
+const profile = async(req,res)=>{
+  res.render("profile")
+}
+
+const logout = async (req, res) => {
+  req.session.destroy();
+  res.send("Session has been destroyed");
+} 
 
 module.exports = {
   views,
   viewCart,
   register,
   login,
+  profile,
+  logout,
 };

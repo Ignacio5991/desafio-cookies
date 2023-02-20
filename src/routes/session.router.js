@@ -10,6 +10,5 @@ router.post("/register",viewSession.registerForm)
 
 router.post("/login",viewSession.login)
 
-router.post("/logout",viewSession.logOut)
 
 module.exports = router;

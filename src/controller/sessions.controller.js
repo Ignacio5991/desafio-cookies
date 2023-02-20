@@ -57,18 +57,8 @@ const login = async (req, res) => {
   }
 };
 
-const logOut = async (req, res) => {
-  req.session.destroy((err) => {
-    if (!err) {
-      return res.clearCookie('connect.sid').send({ status: 'success', message: 'logout' });
-    } else {
-      res.send({ status: 500, error: 'Error logout' });
-    }
-  });
-};
 
 module.exports = {
   registerForm,
   login,
-  logOut,
 };
