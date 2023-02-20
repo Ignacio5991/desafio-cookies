@@ -1,3 +1,15 @@
+<header id="headerhome">
+    <div id="headerMenu">
+        <li><a href="/products">Tienda</a></li>
+        <li><a href="/profile">Perfil</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </div>
+</header> 
+<section>
+  <div>
+    <h1>Bienvenido!! {{firstName}}</h1>
+  </div>
+</section>
 <main id='main' class='container mt-5'>
   <div class='row d-flex d-flex justify-content-between'>
     {{#each products}}
@@ -15,7 +27,7 @@
           </div>
         </div>
       {{/each}}
-       <div class="d-flex justify-content-center ">
+       <div id="paginacion">
             {{#if hasPrevPage}}
             <button id="prev">Anterior</button>
             {{else}}

@@ -2,6 +2,7 @@ const BdProductManager = require("../dao/mongoManager/BdProductManager");
 
 
 
+
 const getProductsBd = async (req, res) => {
   const {limit,page,sort,...query} = req.query;
        const products = await BdProductManager.getProduct( page, limit, sort, query);
