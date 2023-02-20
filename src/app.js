@@ -41,26 +41,6 @@ server.use(cookieParser());
 server.use(express.static(__dirname+'/public'));
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
-//rutas
-
-server.use("/api/products/", productsRoute);
-server.use("/api/carts/", cardsRoute);
-server.use("/", viewRoute);
-server.use('/api/session', routerSession);
-server.use("/api/productsBd/", productsRouteBd );
-server.use("/api/cartsBd/", cartsRouteBd );
-server.use("/api/chats/", chatsRouter );
-
-
-
-
-const test = async ()=>{
-  await mongoose.connect('mongodb+srv://Ignacio:jY6DHRTn6F9uCAmF@admin.mtszt8r.mongodb.net/?retryWrites=true&w=majority',
- );
- console.log("Su conexion a la base fue exitosa")
-
-}
-
 
 server.use(
   session({
@@ -75,6 +55,28 @@ server.use(
     saveUninitialized: true,
   })
 );
+
+//rutas
+
+server.use("/api/products/", productsRoute);
+server.use("/api/carts/", cardsRoute);
+server.use("/", viewRoute);
+server.use('/api/session/', routerSession);
+server.use("/api/productsBd/", productsRouteBd );
+server.use("/api/cartsBd/", cartsRouteBd );
+server.use("/api/chats/", chatsRouter );
+
+
+
+
+const test = async ()=>{
+  await mongoose.connect('mongodb+srv://Ignacio:jY6DHRTn6F9uCAmF@admin.mtszt8r.mongodb.net/?retryWrites=true&w=majority',
+ );
+ console.log("Su conexion a la base fue exitosa")
+ 
+}
+
+
 
 
 test();

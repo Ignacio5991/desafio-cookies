@@ -1,8 +1,8 @@
 const {Router} = require('express');
-const router = Router();
 const userModel = require('../dao/models/users.model')
 const viewSession = require ('../controller/sessions.controller')
 
+const router = Router();
 
 
 

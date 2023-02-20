@@ -20,10 +20,19 @@ const viewCart = async (req,res) => {
  })
 }
 
+const register = async (req,res)=>{
+  res.render("register")
+}
 
+const login = async (req,res)=>{
+  res.render("login")
+
+}
 
 
 module.exports = {
   views,
   viewCart,
+  register,
+  login,
 };
