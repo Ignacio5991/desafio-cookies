@@ -29,12 +29,20 @@ const login = async (req,res)=>{
 }
 
 const profile = async(req,res)=>{
-  res.render("profile")
+  res.render('profile', {
+    name: req.session.user.firstName,
+    lastName: req.session.user.lastName,
+    email: req.session.user.email,
+})
 }
 
 const logout = async (req, res) => {
   req.session.destroy();
-  res.send("Session has been destroyed");
+  res.render('logout')
+  // setTimeout(function(){
+  //   window.location.href = 'http://localhost:8080/login';
+  // },5000)
+  // res.send("Session has been destroyed");
 } 
 
 module.exports = {
