@@ -5,8 +5,8 @@ loginForm.addEventListener('submit', (e) => {
   const data = Object.fromEntries(new FormData(loginForm));
   fetch('/api/session/login', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
-    headers: { 'Content-type': 'application/json' },
   })
     .then((res) => res.json())
     .then((data) => {
@@ -27,6 +27,14 @@ loginForm.addEventListener('submit', (e) => {
         });
       }
     });
+
+
+
+
+
+
+
+
   // .then((res) => {
   //   if (res.error) {
   //     loginForm.firstChild.textContent = `${res.error}`;

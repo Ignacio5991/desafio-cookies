@@ -31,9 +31,11 @@ const login = async (req, res) => {
         email: email,
         role: 'admin',
       };
-      return res.send({
+      return res.status(201).json({
         status: 'success',
         message: 'Has iniciado sesion satisfactoriamente',
+        firstName: user.firstName,
+        lastName:user.lastName
       });
     }
     if (!email || !password) return res.status(400).send({ status: 400, error: 'Valores incompletos' });
@@ -48,14 +50,16 @@ const login = async (req, res) => {
       role: 'user',
     };
 
-    return res.send({
+    return res.status(201).json({
       status: 'success',
       message: 'Has iniciado sesion satisfactoriamente',
+      firstName:user.firstName,
+      lastName:user.lastName
     });
   } catch (error) {
     res.send({ status: 500, error: 'Error de login' });
   }
-};
+}
 
 
 module.exports = {
